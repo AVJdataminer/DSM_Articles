@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2020-03-08-Which_model_first</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="which-machine-learning-model-should-you-try-first">Which machine learning model should you try first?</h1>
+<p><a href="https://medium.com/@aiden.dataminer?source=post_page-----e35579f15924----------------------"></a></p>
+<p><img src="https://miro.medium.com/fit/c/48/48/1*WDVszdcJs5A1fXhnjHZPig.jpeg" alt="Aiden V Johnson"></p>
+<p><a href="https://medium.com/@aiden.dataminer?source=post_page-----e35579f15924----------------------">Aiden V Johnson</a></p>
+<p><a href="https://medium.com/@aiden.dataminer/which-machine-learning-model-should-you-try-first-e35579f15924?source=post_page-----e35579f15924----------------------">Mar 8</a>  ·  3  min read</p>
+<p>Recently, I received an email from an aspiring data scientist asking a common question in data science.  <em>How do I know when to use which model?</em>  The data scientist that sent the question provided more context and had a good approach in mind, but I’d like to answer this question for everyone just starting out in data science.</p>
+<blockquote>
+<p>How do I know when to use which machine learning model?</p>
+</blockquote>
+<p>This is one of those it depends on everything questions; but here is my approach strongly rooted in the elegance of simplicity.</p>
+<blockquote>
+<p><em>“Make everything as simple as possible but not simpler.” — Albert Einstein</em></p>
+</blockquote>
+<h2 id="diagram-of-the-first-model-selection"><strong>Diagram of the first model selection</strong></h2>
+<p><img src="https://miro.medium.com/max/30/1*WBaYR8qUT1K53h87PmJppw.png?q=20" alt=""></p>
+<p><img src="https://miro.medium.com/max/3300/1*WBaYR8qUT1K53h87PmJppw.png" alt=""></p>
+<h2 id="why-random-forest-logistic-lasso-and-linear-regression"><strong>Why Random Forest, Logistic, Lasso and Linear Regression?</strong></h2>
+<p>Starting with the Multi-Class response variable, Random Forest is well suited to highly correlated features and easy to interpret and understand. In addition, the easy extraction of relative feature importances provides the user a preliminary view of features with strong predictive power for the response variable. Logistic regression is even easier to understand and highly efficient in terms of model run time and provides the simplest approach when model performance is good for the classification in hand. Although multi-class logistic regression is feasible, implementing Random Forest in a multi-class situation is more commonly accepted.</p>
+<p>Now, looking at the numeric response side starting with multiple linear regression as the simplest option, however, it is likely to suffer from over-fitting, thus we introduce Lasso regression. Lasso regression through L1-regularization is able to ‘automatically’ complete feature selection for the user by pushing all unimportant feature coefficients to zero. Finally, if the data has many (more than 20) features and some of them are correlated with each other, applying a random forest regression is an easy to understand modeling method usual performing well in non-ideal situations, such as the assumptions for linear regression being unmet.</p>
+<h2 id="design-your-own-decision-framework">Design Your Own Decision Framework</h2>
+<p>You can design your own decision framework based on the algorithms you prefer and your project constraints following these questions:</p>
+<ol>
+<li>Is your response variable numeric or categorical?</li>
+<li>How many features are in the data?</li>
+<li>Do the features have a high likelihood of collinearity?</li>
+<li>What is the importance of interpretability to the model outcome?</li>
+<li>What will be the application of the model?</li>
+</ol>
+<h2 id="be-decisive-not-exhaustive">Be Decisive, not Exhaustive</h2>
+<p>No matter which model you start with the idea is to balance the constraints of efficiency in implementation, level of understanding required, and overall model performance. It is a best practice to test a couple algorithms and compare their performances, and by a couple I mean two to three with a max of five. You should compare models that leverage different aspects of the features and modeling performance. Don’t compare a decision tree model to a random forest model and expect vastly different results. Hyperparameter tuning is great, but it is also time-consuming and often only yields slight increases in model performance metrics.</p>
+<h2 id="move-on-to-more-feature-engineering">Move on to More Feature Engineering</h2>
+<p>Feature engineering is more likely to improve model performance than hyperparameter tuning, so consider where your time is best spent and develop more features if your models aren’t performing as you would like.</p>
+<h4 id="keywords">Keywords</h4>
+<ul>
+<li><a href="https://medium.com/tag/data-science">Data Science</a></li>
+<li><a href="https://medium.com/tag/machine-learning">Machine Learning</a></li>
+<li><a href="https://medium.com/tag/python">Python</a></li>
+<li><a href="https://medium.com/tag/model-selection">Model Selection</a></li>
+<li><a href="https://medium.com/tag/ai">AI</a></li>
+</ul>
+</div>
+</body>
+
+</html>

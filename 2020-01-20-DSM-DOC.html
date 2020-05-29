@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2020-01-20-DSM-DOC</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="the-data-science-method-dsm-—-documentation">The Data Science Method (DSM) — Documentation</h1>
+<p><a href="https://medium.com/@aiden.dataminer?source=post_page-----c92c28bd45e6----------------------"></a></p>
+<p><img src="https://miro.medium.com/fit/c/96/96/1*WDVszdcJs5A1fXhnjHZPig.jpeg" alt="Aiden V Johnson"></p>
+<p><a href="https://medium.com/@aiden.dataminer?source=post_page-----c92c28bd45e6----------------------">Aiden V Johnson</a></p>
+<p><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-documentation-c92c28bd45e6?source=post_page-----c92c28bd45e6----------------------">Jan 20</a>  ·  5  min read</p>
+<p>This is the sixth and final article in a series about how to take your data science projects to the next level by using a methodological approach similar to the scientific method coined the Data Science Method. This article is focused on the documentation step, which includes:</p>
+<ul>
+<li>Reviewing the modeling results</li>
+<li>Presenting and sharing your findings (data storytelling)</li>
+<li>Finalizing code</li>
+<li>Finalizing model documentation</li>
+</ul>
+<p>If you missed the previous article(s) in this series, you can go to the beginning  <a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-a-framework-on-how-to-take-your-data-science-projects-to-the-next-91f9fd81e5d1">here</a>, or click on each step title below to read a specific step in the process.</p>
+<p><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-a-framework-on-how-to-take-your-data-science-projects-to-the-next-91f9fd81e5d1"><strong>The Data Science Method</strong></a></p>
+<ol>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-problem-identification-6ffcda1e5152?source=friends_link&amp;sk=a56dc93c270bfdd21a585b0618984be0">Problem Identification</a></li>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-data-collection-organization-and-definitions-d19b6ff141c4">Data Collection, Organization, and Definitions</a></li>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-exploratory-data-analysis-bc84d4d8d3f9">Exploratory Data Analysis</a></li>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-pre-processing-and-training-data-development-fd2d75182967">Pre-processing and Training Data Development</a></li>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-modeling-56b4233cad1b">Modeling</a></li>
+<li>Documentation</li>
+</ol>
+<h1 id="reviewing-results">Reviewing Results</h1>
+<p>y_pred = model.predict(x_test)<br>
+print(explained_variance_score(y_test, y_pred))<br>
+0.92</p>
+<p>When reviewing your data science project results you are first looking at how the predictive model performed from a mathematical standpoint, but also from the business insights perspective. For example, if we want to guide the management on how to price a product, we can build a model on comparable products and predict the new product price based on our model. The predicted result is the ‘expected price’ for the new product. In the code block above we built a model with an R-squared value of 92%, which provides evidence that the model is predicting well on our test hold out data set. Given the model is performing well we can now use the same model to predict our new product with the same features associated with it as those used in the model training.</p>
+<p>predicted_price = model.predict(new_product)<br>
+print ("The expected price is $%s " % ')<br>
+The expected price is $88.72</p>
+<p>Similarly, if we are looking to forecast maintenance in order to prevent manufacturing downtime we have to start with reviewing sensor data for anomalies in the equipment. An anomaly is an event of the sensor failing over some time horizon. This is considered an anomaly because the majority of the time-series sensor data show reasonable values, and it is not until the sensor fails that maintenance event is indicated. Often the sensor will return zero when everything is running smoothly.</p>
+<p><img src="https://miro.medium.com/max/60/1*f5ydhOk9e8-Rhg31pu9uhQ.png?q=20" alt=""></p>
+<p><img src="https://miro.medium.com/max/502/1*f5ydhOk9e8-Rhg31pu9uhQ.png" alt=""></p>
+<p>Sensor data stream where anything other than zero indicates a failure</p>
+<p>In this sensor example, we have eight failure events at the beginning of our time-series, which from a manufacturing perspective could cause a big disruption and it would be ideal if those failures could be forecast and preventive maintenance be applied before that event occurs to avoid manufacturing downtime. Therefore our data science modeling should be oriented toward effectively forecasting the failure events across the temporal dimension. This is different than building a model to effectively predict failures from non-failures, where the separation between the training and testing data set could be random.</p>
+<p>When reviewing the results consider the key factors you identified in the problem identification step and develop data visualizations to communicate the relationship between the key factors and your predicted outcome from the lens of the business problem and recommended action.</p>
+<h1 id="presenting-and-sharing-your-findings-data-storytelling">Presenting and sharing your findings (data storytelling)</h1>
+<p>This is the most important part of your entire data science project. Doing diligent and thoughtful model development only matters if your models get used. Unfortunately, it is all too common for a data science project to never get put into action, even after weeks of work. Your goal should be to convert your audience into believers of a better future given your recommendation is implemented. This starts by stating the current state of reality per the problem identification step. Once you establish the current state, guide your audience to the future state of rainbows and butterflies, or higher revenues and lower costs. This concept was identified by  <a href="https://www.ted.com/speakers/nancy_duarte">Nancy Duarte</a>  as the secret structure of great talks. Nancy is an expert in presentation design and I highly recommend you watch her Ted talk. One of the most effective ways to communicate a future the audience is interested in is by tailoring the presentation to their perspective. This brings us to our first step in developing a persuasive data story; identify your audience and adapt your presentation in style and form. This might result in changing the medium you use to communicate, from Jupyter Notebook to Slidedecks. So let’s review the key components:</p>
+<ul>
+<li>identify the audience and adapt to the appropriate level of detail</li>
+<li>build a narrative around the status quo versus the fabulous future</li>
+<li>communicate your recommendations as established by your data science project.</li>
+</ul>
+<p>For more in-depth information check out the  <a href="https://amzn.to/2REbs5l">HBR Guide to Persuasive Presentations</a>.</p>
+<hr>
+<h1 id="finalizing-code">Finalizing code</h1>
+<p>The primary purpose of the finalizing code step is to ensure that the reuse of your code by you or others is not burdensome. In most developed data science teams you will work in a version control environment such as Git where your code is merged into branches alongside other data scientists and engineers. This is a great place for the team to share code as commonly used scripts or utilities can be shared readily by the team. However, even if you are working independently it is good practice to save your code using Git and to create flexible functions and scripts that can be written once and used again and again throughout your work. Make sure to provide some documentation or comments within each function or script describing the dependencies, inputs, outputs, and possible todos. Adding a short description or a detailed name to a Jupyter notebook can help leverage it later for a different project or to share it with a colleague and please clean up any extraneous or non-functioning code.</p>
+<p>Finalizing your modeling code may also involve moving the model to production or serializing the model for later access. Putting your model in production varies substantially depending on your organization’s infrastructure and you will want to communicate with the data engineers and solutions architects about what additional scripts they may need to get the model production-ready.</p>
+<hr>
+<h1 id="finalize-model-documentation">Finalize model documentation</h1>
+<p>This is the time and place to corral the data science modeling project into a succinct document that gives the details of what you built and how well it performed.</p>
+<p>Create a document called the Model Report. Here is the general layout to give you an idea of where start.</p>
+<h1 id="problem-identification-overview">Problem Identification Overview</h1>
+<h2 id="define-the-question-specific-to-modeling-activities">- Define the question specific to modeling activities</h2>
+<p>e.g Predict device failures.</p>
+<h2 id="identify-the-data-needed-and-or-available">- Identify the data needed and or available:</h2>
+<p>e.g Daily aggregated telemetry device failure data.</p>
+<h2 id="define-the-data-timeframe">- Define the data Timeframe:</h2>
+<p>e.g. 01/01/2015–11/02/2015</p>
+<h2 id="describe-the-modeling-response">- Describe the Modeling Response:</h2>
+<p>e.g. Binary, 0 or 1, non-failure = 0, failure = 1</p>
+<h2 id="unsupervised-or-supervised-classification-or-regression-model">-Unsupervised or Supervised Classification or Regression Model:</h2>
+<p>e.g. Supervised Classification</p>
+<h2 id="what-deliverables-will-be-generated">-What Deliverables will be generated:</h2>
+<p>e.g.PDF outlining modeling process from data exploration to best model results.</p>
+<h1 id="data-preprocessing-steps-of-note">Data Preprocessing steps of note</h1>
+<ul>
+<li>e.g. dropped duplicate rows</li>
+<li>e.g. created PCA for dimension reduction</li>
+</ul>
+<h1 id="model-description">Model Description</h1>
+<ul>
+<li>Input data size and features</li>
+<li>Model Algorithm and Parameters</li>
+<li>Model iterations can be discussed here if they are not saved out separately</li>
+</ul>
+<h1 id="model-performance">Model Performance</h1>
+<ul>
+<li>R², RMSE, Confusion Matrix, Precision &amp; Recall, AUC/ROC</li>
+</ul>
+<h1 id="model-findings">Model Findings</h1>
+<ul>
+<li>Feature Importances</li>
+</ul>
+<h1 id="next-steps">Next Steps</h1>
+<ul>
+<li>Ready for production?</li>
+<li>Test new hyperparameters or different modeling methods</li>
+</ul>
+<hr>
+<p>Phew, that’s all folks! You’ve now seen all the steps involved in the data science project following the Data Science Method framework. Adopt and adapt as you see fit. Happy Modeling!</p>
+<h4 id="keywords">Keywords</h4>
+<ul>
+<li><a href="https://medium.com/tag/data-science">Data Science</a></li>
+<li><a href="https://medium.com/tag/data-storytelling">Data Storytelling</a></li>
+<li><a href="https://medium.com/tag/documentation">Documentation</a></li>
+<li><a href="https://medium.com/tag/machine-learning">Machine Learning</a></li>
+<li><a href="https://medium.com/tag/python">Python</a></li>
+</ul>
+</div>
+</body>
+
+</html>

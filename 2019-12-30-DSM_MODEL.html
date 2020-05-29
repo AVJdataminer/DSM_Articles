@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2019-12-30-DSM_MODEL</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="the-data-science-method-dsm-—-modeling">The Data Science Method (DSM) — Modeling</h1>
+<p><a href="https://medium.com/@aiden.dataminer?source=post_page-----56b4233cad1b----------------------"></a></p>
+<p><img src="https://miro.medium.com/fit/c/96/96/1*WDVszdcJs5A1fXhnjHZPig.jpeg" alt="Aiden V Johnson"></p>
+<p><a href="https://medium.com/@aiden.dataminer?source=post_page-----56b4233cad1b----------------------">Aiden V Johnson</a></p>
+<p><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-modeling-56b4233cad1b?source=post_page-----56b4233cad1b----------------------">Dec 30, 2019</a>  ·  5  min read</p>
+<p>This is the fifth article in a series about how to take your data science projects to the next level by using a methodological approach similar to the scientific method coined the Data Science Method. This article is focused on the Modeling step, which includes: fitting the model, reviewing the model performance, and identifying the final model. If you missed the previous article(s) in this series, you can go to the beginning  <a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-a-framework-on-how-to-take-your-data-science-projects-to-the-next-91f9fd81e5d1">here</a>, or click on each step title below to read a specific step in the process.</p>
+<p><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-a-framework-on-how-to-take-your-data-science-projects-to-the-next-91f9fd81e5d1"><strong>The Data Science Method</strong></a></p>
+<ol>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-problem-identification-6ffcda1e5152?source=friends_link&amp;sk=a56dc93c270bfdd21a585b0618984be0">Problem Identification</a></li>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-data-collection-organization-and-definitions-d19b6ff141c4">Data Collection, Organization, and Definitions</a></li>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-exploratory-data-analysis-bc84d4d8d3f9">Exploratory Data Analysis</a></li>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-pre-processing-and-training-data-development-fd2d75182967">Pre-processing and Training Data Development</a></li>
+<li>Modeling</li>
+<li><a href="https://medium.com/@aiden.dataminer/the-data-science-method-dsm-documentation-c92c28bd45e6">Documentation</a></li>
+</ol>
+<p><img src="https://miro.medium.com/max/60/0*-lfAkVaTz-jv-kSS?q=20" alt=""></p>
+<p><img src="https://miro.medium.com/max/5352/0*-lfAkVaTz-jv-kSS" alt=""></p>
+<p>Photo by  <a href="https://unsplash.com/@deleece?utm_source=medium&amp;utm_medium=referral">Deleece Cook</a>  on  <a href="https://unsplash.com/?utm_source=medium&amp;utm_medium=referral">Unsplash</a></p>
+<p>Early practitioners and those less familiar with data science often think data scientists spend their entire day training machine learning models and tuning those models. However, we know that effective data science is the process of converting business problems into thoughtfully designed data problems where thorough problem identification work and data understanding is achieved before any model development work takes place. Modeling is the step that allows leveraging your data to make predictive insights and usually provides the most value in a data science project.</p>
+<p>Let’s review the primary steps applied in Modeling.</p>
+<ol>
+<li>Fit the model with the training data</li>
+<li>Review the model performances — Iterate over models and parameters</li>
+<li>Identify the final model</li>
+</ol>
+<hr>
+<h1 id="fit-the-model-with-the-training-data">Fit the model with the training data</h1>
+<p>In the previous DSM step, we discussed the importance of creating a training and testing split of your model development dataset. Additionally, you should have a clear understanding of what you’re hoping to predict. The data type of your response variable along with a strong understanding of the features will guide you in determining which type of model to fit.</p>
+<p>If your response variable is continuous, e.g. temperature or sales price, a numeric value that has a distribution closer to Gaussian than Bernoulli, than you will apply a regression type of model; otherwise a supervised classification model should be used.</p>
+<p><strong>Which type of model?</strong></p>
+<p>Continuous (Numeric) Response → Regression Model</p>
+<p>Categorical Response (Labeled data) → Supervised Classification Model</p>
+<p>Start with the simplest model for ease of understanding and communication. then as you build two or three model types to compare add more complex modeling methods.</p>
+<p>Continuous Response → Regression Model → Multiple Linear Regression</p>
+<p>Categorical Response → Supervised Classification Model → Logistic Regression</p>
+<p>Let’s get busy applying this model. Even if you’re using a more advanced machine learning algorithm such as a Random Forest start with the out of the box implementation. Don’t worry about model hyperparameter tuning just yet. The first iteration of fitting the model with training data would look like the code box below implementing the sklearn library to apply a random forest regression.</p>
+<p>from sklearn.ensemble import RandomForestRegressorregressor = RandomForestRegressor(random_state=0, n_estimators=200)regressor.fit(X_train, y_train)regressor.score(X_test, y_test)</p>
+<p>After fitting the model we score the model to review the performance as well as predict the holdout test set to review the blind model performance.</p>
+<hr>
+<h1 id="review-the-model-performances-—-iterate-over-models-and-parameters">Review the model performances — Iterate over models and parameters</h1>
+<p>The code box below demonstrates the step of creating predictions on the testing data set using the model you developed in the previous step.</p>
+<p>y_pred = regressor.predict(X_test)from sklearn.metrics import mean_squared_errorfrom math import sqrtrmse = sqrt(mean_squared_error(y_test, y_pred))rmse</p>
+<p>Now let’s say we review our model performance and it’s weak, we discuss model performance metrics later on in the third section of the article. We have identified the need to do some model hyperparameter tuning to improve our model predictions.</p>
+<p><em>Model Hyperparameter Tuning</em></p>
+<ul>
+<li>When → the simplest model wasn’t a good solution and this more complex model doesn’t meet performance requirements,</li>
+<li>Why → improve the model accuracy compared to the generic out of the box flavor,</li>
+<li>How → Grid Search, Random Search or Bayesian Optimization.</li>
+</ul>
+<p>Here is an example of performing a grid search optimization to identify the best settings for the hyperparameters in the Random Forest Regression model. Notice we first create a grid of values for each one of the hyperparameters to test.</p>
+<p>from sklearn.ensemble import RandomForestRegressor<br>
+from sklearn.model_selection import GridSearchCVparam_grid = {“n_estimators”: [200, 500],<br>
+“max_depth”: [3, None],<br>
+“max_features”: [1, 3, 5, 10],<br>
+“min_samples_split”: [2, 5, 10],<br>
+“min_samples_leaf”: [1, 3, 10],<br>
+“bootstrap”: [True, False]}model = RandomForestRegressor(random_state=0)grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1)grid.fit(X_train, y_train)print(grid.best_score_)print(grid.best_params_)</p>
+<p>Running this hyperparameter optimization will take some time to run compared to the plain out of the box application. However, you’re likely going to improve the model performance such that the added compute time will be worth the result.</p>
+<h1 id="identify-the-final-model">Identify the final model</h1>
+<p>Model performance metrics are again dependent on whether you’re working in a regression universe or a supervised classification universe. Here is a list of commonly used model performance metrics for your reference.</p>
+<p><img src="https://miro.medium.com/max/60/1*tZxa-pG48yAHfgiIbH_3lQ.png?q=20" alt=""></p>
+<p><img src="https://miro.medium.com/max/552/1*tZxa-pG48yAHfgiIbH_3lQ.png" alt=""></p>
+<p>List of typical model metrics</p>
+<p>Which model performance metric to use may be a decision to be made in the project identification step. Defining the criteria for success of your model as a Mean Absolute Error ≤40 is a clear criterion for determining model success and completion. Based on the table below we would choose the Random Forest Regression model as the ‘Final Model’. The mean absolute error is less than the simple regression model and within our criteria for success.</p>
+<p><img src="https://miro.medium.com/max/60/1*uktSI2lFUN344fGrVG7miQ.png?q=20" alt=""></p>
+<p><img src="https://miro.medium.com/max/440/1*uktSI2lFUN344fGrVG7miQ.png" alt=""></p>
+<p>Compare two model performances</p>
+<p>When choosing a final model also consider how often this model will need to be re-run and the processing time increase versus model performance increase. Additional considerations include interpretability and the associated buy-in by the stakeholders. More about communication to stakeholders will be covered in the DSM step 6 article on documentation. To receive updates about DSM sign up  <a href="https://www.breakthroughdatascience.com/pl/102737">here</a>.</p>
+<h4 id="keywords">Keywords</h4>
+<ul>
+<li><a href="https://medium.com/tag/machine-learning">Machine Learning</a></li>
+<li><a href="https://medium.com/tag/modeling">Modeling</a></li>
+<li><a href="https://medium.com/tag/data-science">Data Science</a></li>
+<li><a href="https://medium.com/tag/python">Python</a></li>
+<li><a href="https://medium.com/tag/classification">Classification</a></li>
+</ul>
+</div>
+</body>
+
+</html>
