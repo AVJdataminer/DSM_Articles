@@ -17,9 +17,8 @@
 6.  [Get started with Random Forest Example Notebook.](https://aidenvjohnson.com/wp-content/uploads/2020/05/Intro_python-1.html)  
     
 
-  
 
 Optional: Here is  [an article](https://richpauloo.github.io/2018-05-16-Installing-the-R-kernel-in-Jupyter-Lab/) on how to add an R kernel to Jupyter Notebooks.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNTk2NTQ0NzldfQ==
+eyJoaXN0b3J5IjpbNTI2ODUxNDU5XX0=
 -->
